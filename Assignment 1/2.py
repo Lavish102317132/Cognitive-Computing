@@ -1,0 +1,12 @@
+a=90
+b=87
+c=a+b
+print(c)
+d="Hello"
+e="hi"
+f=d+e
+print(f)
+g=1
+h="number"
+i=str(g)+h
+print(i)
