@@ -1,0 +1,59 @@
+import numpy as np
+
+# Q.1
+
+gfg = np.matrix('[4, 1, 9; 12, 3, 1; 4, 5, 6]')
+
+sum_all = np.sum(gfg)
+
+sum_rows = np.sum(gfg, axis=1)
+
+sum_cols = np.sum(gfg, axis=0)
+
+# Q.2 (a)
+
+array = np.array([10, 52, 62, 16, 16, 54, 453])
+
+sorted_array = np.sort(array)
+
+sorted_indices = np.argsort(array)
+
+smallest_4 = np.sort(array)[:4]
+
+largest_5 = np.sort(array)[-5:]
+
+# Q.2 (b)
+
+array_floats = np.array([1.0, 1.2, 2.2, 2.0, 3.0, 2.0])
+
+integer_elements = array_floats[array_floats == array_floats.astype(int)]
+
+float_elements = array_floats[array_floats != array_floats.astype(int)]
+
+# Q.3
+
+initials = ('A', 'B')
+X = sum(ord(char) for char in initials)
+
+sales = np.array([X, X+50, X+100, X+150, X+200])
+
+tax_rate = ((X % 5) + 5) / 100
+sales_after_tax = sales * (1 - tax_rate)
+
+discounted_sales = np.where(sales < X+100, sales * 0.95, sales * 0.90)
+
+weekly_sales = np.vstack([sales, sales * 1.02, sales * 1.02**2])
+
+print("Q.1 i. Sum of all elements:", sum_all)
+print("Q.1 ii. Row-wise sum:", sum_rows)
+print("Q.1 iii. Column-wise sum:", sum_cols)
+print("Q.2 (a) i. Sorted array:", sorted_array)
+print("Q.2 (a) ii. Indices of sorted array:", sorted_indices)
+print("Q.2 (a) iii. 4 smallest elements:", smallest_4)
+print("Q.2 (a) iv. 5 largest elements:", largest_5)
+print("Q.2 (b) i. Integer elements:", integer_elements)
+print("Q.2 (b) ii. Float elements:", float_elements)
+print("Q.3 a) Sales dataset:", sales)
+print("Q.3 b) Sales after tax:", sales_after_tax)
+print("Q.3 c) Discounted sales:", discounted_sales)
+print("Q.3 d) Weekly sales:", weekly_sales)
