@@ -1,0 +1,88 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Q1: Plot mathematical functions
+M = float(input("Enter a value for M: "))
+x = np.linspace(-10, 10, 100)
+
+y1 = M * x**2
+y2 = M * np.sin(x)
+
+plt.figure(figsize=(8, 6))
+plt.plot(x, y1, label=f'y = {M}x^2', linestyle='-', color='b')
+plt.plot(x, y2, label=f'y = {M}sin(x)', linestyle='--', color='r')
+plt.title("Mathematical Functions")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+plt.grid()
+plt.show()
+
+# Q2: Dataset of five subjects and scores
+subjects = ['Math', 'Science', 'English', 'History', 'Art']
+scores = [85, 90, 78, 88, 92]
+df = pd.DataFrame({'Subjects': subjects, 'Scores': scores})
+
+plt.figure(figsize=(8, 6))
+sns.barplot(x='Subjects', y='Scores', data=df, palette='viridis')
+for index, value in enumerate(scores):
+    plt.text(index, value + 1, str(value), ha='center')
+plt.title("Student Scores")
+plt.xlabel("Subjects")
+plt.ylabel("Scores")
+plt.grid(axis='y')
+plt.show()
+
+# Q3: Random dataset with roll number as seed
+roll_number = int(input("Enter your roll number: "))
+np.random.seed(roll_number)
+data = np.random.randn(50)
+cumsum_data = np.cumsum(data)
+
+fig, axes = plt.subplots(2, 2, figsize=(10, 8))
+axes[0, 0].plot(cumsum_data, marker='o', color='g')
+axes[0, 0].set_title("Cumulative Sum Plot")
+axes[0, 0].set_xlabel("Index")
+axes[0, 0].set_ylabel("Cumulative Sum")
+axes[0, 0].grid()
+
+axes[0, 1].scatter(range(50), data, color='purple')
+axes[0, 1].set_title("Scatter Plot with Random Noise")
+axes[0, 1].set_xlabel("Index")
+axes[0, 1].set_ylabel("Random Values")
+axes[0, 1].grid()
+
+plt.tight_layout()
+plt.show()
+
+
+# Total profit line plot
+plt.figure(figsize=(8, 6))
+sns.lineplot(x=df_sales['month_number'], y=df_sales['total_profit'], marker='o', color='b')
+plt.title("Total Profit per Month")
+plt.xlabel("Month Number")
+plt.ylabel("Total Profit")
+plt.grid()
+plt.show()
+
+# Product sales multiline plot
+plt.figure(figsize=(10, 6))
+for column in df_sales.columns[1:-1]:
+    sns.lineplot(x=df_sales['month_number'], y=df_sales[column], label=column)
+plt.title("Product Sales Data")
+plt.xlabel("Month Number")
+plt.ylabel("Sales")
+plt.legend()
+plt.grid()
+plt.show()
+
+# Bar chart for all features
+plt.figure(figsize=(10, 6))
+df_sales.drop(columns=['month_number']).sum().plot(kind='bar', color=sns.color_palette("husl"))
+plt.title("Total Sales of Each Feature")
+plt.xlabel("Features")
+plt.ylabel("Total Sales")
+plt.grid(axis='y')
+plt.show()
